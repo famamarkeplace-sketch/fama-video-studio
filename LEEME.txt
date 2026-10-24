@@ -1,0 +1,32 @@
+FAMA VIDEO STUDIO — VERSIÓN LOCAL DE PRUEBA 1.2
+================================================
+
+QUÉ INCLUYE
+- Interfaz FAMA Records para videoclips, comerciales, series y videos sociales.
+- Sección lateral “Mis API y claves” para guardar varias claves localmente.
+- Conexión de generación implementada para Higgsfield Seedance 2.5 (texto a video).
+- Carga y vista previa local de una canción y múltiples fotos del artista.
+- Diseño preparado para ampliar el flujo de escenas y publicación web.
+
+IMPORTANTE SOBRE ESTA VERSIÓN
+- La canción y las fotos se previsualizan en el navegador, pero aún NO se envían a Seedance como referencias ni se ensamblan automáticamente con la música en un videoclip de duración completa.
+- La integración que realmente genera un clip es Higgsfield. Las otras API se pueden registrar de forma privada, pero sus conectores aún no están implementados.
+- El clip de prueba consume saldo de Higgsfield. No pulses “Generar video” hasta revisar el costo.
+- Para usar varias claves en local, abre “Mis API y claves”. Las claves se guardan en .env.local, excluido de Git.
+- No compartas .env.local ni subas credenciales a GitHub.
+
+CÓMO ABRIR EN WINDOWS 10
+1. Extrae TODO el ZIP a una carpeta nueva, por ejemplo C:\FAMA-Video-Studio-1.2
+2. Instala Node.js LTS si el equipo no lo tiene: https://nodejs.org
+3. Haz doble clic en INICIAR.bat.
+4. Espera a que termine npm install la primera vez. Necesitas conexión a internet.
+5. Se abrirá http://127.0.0.1:8787. Mantén abierta la ventana negra mientras trabajas.
+6. Abre “Mis API y claves” y agrega tu credencial Higgsfield completa en formato ID:SECRETO.
+
+SEGURIDAD
+- Las claves no se incluyen en este ZIP.
+- La clave de Higgsfield que se haya compartido en chats debe revocarse y reemplazarse.
+- En una publicación web, NO pegues claves en la página pública. Configúralas en el panel de variables privadas del proveedor de alojamiento.
+
+PUBLICACIÓN WEB
+El proyecto incluye render.yaml, pero esta versión debe probarse localmente antes de subirla a GitHub/Render. El almacenamiento del plan gratuito puede ser efímero; para los archivos de música, fotos y videos finales hará falta un almacenamiento persistente compatible.

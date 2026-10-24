@@ -1,0 +1,14 @@
+PUBLICACIÓN DE FAMA VIDEO STUDIO EN RENDER
+==========================================
+
+Primero prueba la aplicación localmente con INICIAR.bat.
+
+Para desplegarla:
+1. Crea un repositorio PRIVADO en GitHub.
+2. Sube los archivos del proyecto, sin .env.local, secretos ni claves.
+3. En Render, crea un Web Service conectado al repositorio.
+4. Runtime: Node. Build command: npm install. Start command: npm start.
+5. En Environment, añade NODE_ENV=production y HF_CREDENTIALS como variable secreta con la credencial completa ID:SECRETO.
+6. Despliega y comprueba /api/status.
+
+AVISO: el plan gratuito puede suspender el servicio y no garantiza almacenamiento persistente. Esta versión todavía no monta un videoclip completo ni pasa automáticamente las fotos/canción al modelo. No anuncies el servicio como listo para producción hasta implementar y probar esas funciones.

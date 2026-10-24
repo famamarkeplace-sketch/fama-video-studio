@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: fama-video-studio
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/status
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HF_CREDENTIALS
+        sync: false
