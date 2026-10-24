@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080808"><title>FAMA Video Studio — FAMA Records</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <img class="logo" src="/fama-records.png" alt="FAMA Records">
+  <div class="brand-caption">VIDEO STUDIO</div>
+  <div class="nav-label">TU ESTUDIO</div>
+  <button class="nav active" data-mode="music"><span>♫</span> Videoclips musicales</button>
+  <button class="nav" data-mode="commercial"><span>▣</span> Comerciales de TV</button>
+  <button class="nav" data-mode="series"><span>▶</span> Series y novelas</button>
+  <button class="nav" data-mode="social"><span>▤</span> Videos para redes</button>
+  <div class="nav-label api-label">INTEGRACIONES</div>
+  <button class="nav api-nav" id="apisButton"><span>⌘</span> Mis API y claves <b id="apiCount" class="api-count">0</b></button>
+  <div class="side-foot"><i id="serverDot"></i><span id="serverText">Conectando con el estudio…</span></div>
+</aside>
+<main>
+<header><div><div class="overline">FAMA RECORDS PRESENTA</div><h1>FAMA <em>Video Studio</em></h1><p class="subtitle">Tu visión creativa, convertida en imágenes en movimiento.</p></div><button class="settings" id="settingsButton">⚙ Ajustes de API</button></header>
+<section class="workspace">
+  <div class="intro"><div class="pill">PRODUCCIÓN AUDIOVISUAL CON IA</div><h2 id="modeTitle">Dale imagen a tu música.</h2><p id="modeDescription">Crea clips cinematográficos con Seedance 2.5 y construye tu universo visual escena por escena.</p>
+    <div class="feature-list"><div><b>01</b><span>Describe tu escena</span></div><div><b>02</b><span>Define formato y duración</span></div><div><b>03</b><span>Genera y abre tu video</span></div></div>
+  </div>
+  <div class="panel">
+    <div class="panel-heading"><div><div class="overline">NUEVA GENERACIÓN</div><h3>Diseña tu escena</h3></div><span class="model-tag">SEEDANCE 2.5</span></div>
+    <label for="project">Nombre del proyecto</label><input id="project" placeholder="Ej. Videoclip — Mi nueva canción">
+    <div class="asset-section">
+      <div class="asset-title"><span>01</span><div><strong>Tu música</strong><small>Sube la canción que acompañará el videoclip</small></div></div>
+      <label class="upload-zone" for="musicFile"><span class="upload-icon">♫</span><span><b>Seleccionar canción</b><small>MP3, WAV, M4A · vista previa local</small><em id="musicName">Ningún archivo seleccionado</em></span><input id="musicFile" type="file" accept="audio/mpeg,audio/wav,audio/x-wav,audio/mp4,audio/aac,.mp3,.wav,.m4a,.aac,.flac"></label>
+      <audio id="musicPreview" class="media-preview hidden" controls></audio>
+      <div class="asset-title"><span>02</span><div><strong>Fotos del artista / referencias</strong><small>Selecciona una o varias imágenes</small></div></div>
+      <label class="upload-zone" for="photoFiles"><span class="upload-icon">▧</span><span><b>Subir fotos de referencia</b><small>JPG, PNG, WEBP · puedes elegir varias</small><em id="photoName">Ninguna foto seleccionada</em></span><input id="photoFiles" type="file" accept="image/png,image/jpeg,image/webp" multiple></label>
+      <div id="photoPreview" class="photo-preview"></div>
+      <p class="fineprint upload-note">Los archivos se previsualizan en este navegador. En esta versión de prueba aún no se envían como referencias al modelo ni se ensamblan con la canción final.</p>
+    </div>
+    <label for="prompt">¿Qué quieres ver en pantalla?</label><textarea id="prompt" rows="5" placeholder="Describe el lugar, el artista o personajes, la acción, la iluminación, los movimientos de cámara y el estilo visual…"></textarea>
+    <div class="field-grid"><div><label for="ratio">Formato</label><select id="ratio"><option value="16:9">16:9 · Horizontal</option><option value="9:16">9:16 · Vertical</option><option value="1:1">1:1 · Cuadrado</option></select></div><div><label for="duration">Duración del clip</label><select id="duration"><option value="5">5 segundos</option><option value="10">10 segundos</option><option value="15">15 segundos</option></select></div></div>
+    <div class="field-grid"><div><label for="resolution">Resolución</label><select id="resolution"><option value="720p">720p</option><option value="1080p">1080p</option></select></div><label class="audio-toggle"><input id="audio" type="checkbox" checked><span>Generar audio si el modelo lo admite</span></label></div>
+    <button id="generate" class="primary">GENERAR VIDEO <span>↗</span></button>
+    <p class="fineprint">La generación consume saldo de tu API de Higgsfield. Revisa el saldo y los precios antes de generar.</p>
+  </div>
+</section>
+<section class="output">
+  <div class="output-heading"><div><div class="overline">CENTRO DE RESULTADOS</div><h3>Tu producción</h3></div><span class="local-badge">LOCALHOST</span></div>
+  <div class="status-card"><div class="status-symbol" id="statusSymbol">✦</div><div class="status-copy"><strong id="statusTitle">Tu estudio está preparado</strong><p id="statusMessage">Configura la API y escribe una escena para comenzar.</p></div></div>
+  <div id="result"></div>
+</section>
+<footer><span>FAMA RECORDS · FAMA VIDEO STUDIO</span><span>Procesamiento local · Credenciales protegidas en tu equipo</span></footer>
+</main>
+</div>
+<div class="modal hidden" id="settingsModal"><div class="modal-card wide-modal"><button class="close" id="closeModal">×</button><div class="overline">CENTRO DE INTEGRACIONES</div><h2>Mis API y claves</h2><p>Agrega varias credenciales. Se guardan en el servidor local y nunca se vuelven a mostrar. En el alojamiento web se configurarán como variables privadas. Por ahora solo Higgsfield está conectado al flujo de generación.</p>
+  <div class="api-form-grid"><div><label for="apiProvider">Proveedor</label><select id="apiProvider"><option value="higgsfield">Higgsfield · Seedance 2.5</option><option value="openai">OpenAI</option><option value="replicate">Replicate</option><option value="runway">Runway</option><option value="kling">Kling AI</option><option value="other">Otra API</option></select></div><div><label for="apiLabel">Nombre (opcional)</label><input id="apiLabel" placeholder="Ej. API principal"></div></div>
+  <label for="apiCredential">Clave / credencial</label><input id="apiCredential" type="password" autocomplete="off" placeholder="Hig​gsfield requiere ID:SECRETO" />
+  <button class="primary" id="saveApi">GUARDAR CLAVE PRIVADAMENTE</button><p class="fineprint" id="apiMessage">No pegues claves en chats ni las subas a GitHub.</p>
+  <div class="api-list-head"><strong>Claves configuradas</strong><button class="secondary" id="refreshApis">Actualizar lista</button></div><div id="apiList" class="api-list"></div>
+</div></div>
+<script src="/app.js"></script>
+</body></html>
